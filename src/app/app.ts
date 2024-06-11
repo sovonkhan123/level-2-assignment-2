@@ -8,7 +8,7 @@ const app: Application = express();
 app.use(express.json());
 app.use(cors());
 
-app.use('/user', userRoutes)
+app.use('/user', userRoutes);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello War!!!!!!!!!!!!!')
