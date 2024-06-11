@@ -7,7 +7,7 @@ router.post('/api/products', userController.createUser);
 
 router.get('/api/products', userController.getallUser);
 
-router.get('/:userId', userController.getUser);
+router.get('/api/products/:productId', userController.getUser);
 
 
 export const userRoutes = router;

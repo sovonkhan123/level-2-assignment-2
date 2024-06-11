@@ -1,61 +1,7 @@
-// import { Schema, model } from "mongoose";
-// import { User, UserInventory, UserVariant } from "./UserInterface";
 
-// const UserVariantSchema = new Schema<UserVariant>(
-//     [
-//         {
-//           type: {
-//             type: String,
-//             required: true
-//           },
-//           value: {
-//             type: String,
-//             required: true
-//           }
-//         },
-//         {
-//             type: {
-//                 type: String,
-//                 required: true
-//               },
-//               value: {
-//                 type: String,
-//                 required: true
-//               }
-//         }
-//     ]
-// );
-
-// const UserInventorySchema = new Schema<UserInventory>(
-// {
-//     quantity: {
-//         type: Number,
-//         required: true
-//     },
-//     inStock: {
-//         type: Boolean,
-//         required: true
-//     }
-// }
-// );
-
-// const UserSchema = new Schema<User>({
-//     name: {type: String, required: true},
-//   description: {type: String, required: true},
-//   price: {type: Number, required: true},
-//   category: {type: String, required: true},
-// tags: [{
-// type: String,
-// required:true
-// }],
-//   variants: UserVariantSchema,
-//   inventory: UserInventorySchema,
-// })
-
-// export const userModel = model<User>('user', UserSchema)
 
 import { Schema, model } from "mongoose";
-import { User, UserInventory, UserVariant } from "./UserInterface";
+import { UsModel, User, UserInventory, UserVariant } from "./UserInterface";
 
 const UserVariantSchema = new Schema(
   {
@@ -82,14 +28,19 @@ const UserInventorySchema = new Schema<UserInventory>({
   },
 });
 
-const UserSchema = new Schema<User>({
+const UserSchema = new Schema<User, UsModel>({
   name: { type: String, required: true },
   description: { type: String, required: true },
   price: { type: Number, required: true },
   category: { type: String, required: true },
   tags: [{ type: String, required: true }],
-  variants: { type: [UserVariantSchema], required: true }, // Define variants as an array of UserVariantSchema
+  variants: { type: [UserVariantSchema], required: true }, 
   inventory: { type: UserInventorySchema, required: true },
 });
 
-export const userModel = model<User>("user", UserSchema);
+UserSchema.statics.isUserExists = async function (name: string) {
+  const existingUser = await userModel.findOne({ name });
+  return existingUser;
+};
+
+export const userModel = model<User, UsModel>("user", UserSchema);

@@ -9,6 +9,8 @@
 //   }
 // ];
 
+import { Model } from "mongoose";
+
 // export type UserInventory = {
 //   quantity: number;
 //   inStock: boolean;
@@ -42,3 +44,7 @@ export type User = {
   variants: UserVariant;
   inventory: UserInventory;
 };
+
+export interface UsModel extends Model<User> {
+  isUserExists(name: string): Promise<User| null>
+}

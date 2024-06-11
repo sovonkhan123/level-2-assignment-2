@@ -1,17 +1,17 @@
 import { Request, Response } from "express";
 import { userServices } from "./UserService";
+import UserValidationSchema from "./UserValidation";
 
 const createUser = async (req: Request, res: Response) => {
   try {
     const user = req.body.user;
-    console.log(user);
-
-    const result = await userServices.createUserIntoDB(user);
-    console.log(result);
-
+    // zod validation
+    const zodParseData = UserValidationSchema.parse(user);
+    // 
+    const result = await userServices.createUserIntoDB(zodParseData);
     res.status(200).json({
       success: true,
-      message: "User is created successfully",
+      message: "Product created successfully",
       data: result,
     });
   } catch (err: any) {
@@ -29,7 +29,7 @@ const getallUser = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: "user is retrieved successfully",
+      message: "Products fetched successfully!",
       data: result,
     });
   } catch (err) {
@@ -43,7 +43,7 @@ const getUser = async (req: Request, res: Response) => {
         const result = await userServices.getUserFromDB(studentId);
         res.status(200).json({
             success: true,
-            message: 'student is retrieved successfully',
+            message: 'Product fetched successfully!',
             data: result
         })
     }catch(err: any){

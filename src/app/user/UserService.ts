@@ -2,6 +2,9 @@ import { User } from "./UserInterface";
 import { userModel } from "./UserModels";
 
 const createUserIntoDB = async (userData: User) => {
+  if (await userModel.isUserExists(userData.name)) {
+    throw new Error("Product already exists");
+  }
   const result = await userModel.create(userData);
   return result;
 };
@@ -19,5 +22,5 @@ const getUserFromDB = async (id: String) => {
 export const userServices = {
   createUserIntoDB,
   getAllUserFromDB,
-  getUserFromDB
+  getUserFromDB,
 };
