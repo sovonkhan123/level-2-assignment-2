@@ -38,13 +38,19 @@ const getAllOrder = async(req: Request, res: Response) => {
     }
 }
 
-const getOrder = async(req: Request, res: Response) => {
+const searchOrder = async(req: Request, res: Response) => {
     try{
-        const {orderId} = req.params
-        const result = await orderServices.getOrderFromDB(orderId);
+        const {email} = req.query;
+        if (!email) {
+          return res.status(400).json({
+            success: false,
+            message: "searchTerm query parameter is required",
+          });
+        }
+        const result = await orderServices.searchOrderFromDB(email as string);
         res.status(200).json({
             success: true,
-            message: "Orders fetched successfully!",
+            message: "Orders fetched successfully for user email!",
             data: result
         })
     }catch(err: any){
@@ -58,5 +64,5 @@ const getOrder = async(req: Request, res: Response) => {
 export const orderCollection = {
   createOrder,
   getAllOrder,
-  getOrder
+  searchOrder
 };

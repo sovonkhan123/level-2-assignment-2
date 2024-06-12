@@ -12,8 +12,8 @@ const getAllOrderFromDB = async() => {
     return result;
 };
 
-const getOrderFromDB = async(id: String) => {
-    const result = await orderModel.findOne({id});
+const searchOrderFromDB = async(email: string) => {
+    const result = await orderModel.find({ email: new RegExp(email, 'i') });
     return result;
 };
 
@@ -21,5 +21,5 @@ const getOrderFromDB = async(id: String) => {
 export const orderServices = {
     createOrderIntoDB,
     getAllOrderFromDB,
-    getOrderFromDB
+    searchOrderFromDB
 }

@@ -110,7 +110,6 @@ const updateUser = async (req: Request, res: Response) => {
 const searchUserByTerm = async (req: Request, res: Response) => {
   try {
     const { searchTerm } = req.query;
-    console.log(searchTerm);
     if (!searchTerm) {
       return res.status(400).json({
         success: false,
@@ -118,7 +117,6 @@ const searchUserByTerm = async (req: Request, res: Response) => {
       });
     }
     const result = await userServices.searchUserByTermFromDB(searchTerm as string);
-    console.log(result);
     res.status(200).json({
       success: true,
       message: `Products matching search term ${searchTerm} fetched successfully!`,
