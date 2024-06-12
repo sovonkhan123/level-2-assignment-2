@@ -11,5 +11,7 @@ router.get('/api/products/:productId', userController.getUser);
 
 router.delete('/api/products/:productId',userController.deleteUser);
 
+router.put('/api/products/:productId',userController.updateUser);
+
 
 export const userRoutes = router;

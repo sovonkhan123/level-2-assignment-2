@@ -4,7 +4,7 @@ import UserValidationSchema from "./UserValidation";
 
 const createUser = async (req: Request, res: Response) => {
   try {
-    const user = req.body.user;
+    const user = req.body;
     // zod validation
     const zodParseData = UserValidationSchema.parse(user);
     // 
@@ -20,7 +20,7 @@ const createUser = async (req: Request, res: Response) => {
       message: err.message || "something went wrong",
       error: err,
     });
-  }
+  };
 };
 
 const getallUser = async (req: Request, res: Response) => {
@@ -32,9 +32,13 @@ const getallUser = async (req: Request, res: Response) => {
       message: "Products fetched successfully!",
       data: result,
     });
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: err.message || "something went wrong",
+      error: err,
+    });
+  };
 };
 
 const getUser = async (req: Request, res: Response) => {
@@ -45,10 +49,14 @@ const getUser = async (req: Request, res: Response) => {
             success: true,
             message: 'Product fetched successfully!',
             data: result
-        })
-    }catch(err: any){
-        console.log(err)
-    }
+        });
+    }catch (err: any) {
+      res.status(500).json({
+        success: false,
+        message: err.message || "something went wrong",
+        error: err,
+      });
+    };
 };
 
 const deleteUser = async (req: Request, res: Response) => {
@@ -59,10 +67,33 @@ const deleteUser = async (req: Request, res: Response) => {
             success: true,
             message: 'Product deleted successfully!',
             data: result
-        })
-    }catch(err: any){
-        console.log(err)
-    }
+        });
+    }catch (err: any) {
+      res.status(500).json({
+        success: false,
+        message: err.message || "something went wrong",
+        error: err,
+      });
+    };
+};
+
+const updateUser = async (req: Request, res: Response) => {
+    try{
+        const {studentId} = req.params;
+        const updateData = req.body;
+        const result = await userServices.updateUserFromDB(studentId,updateData);
+        res.status(200).json({
+            success: true,
+            message: 'Product updated successfully!',
+            data: updateData,
+        });
+    }catch (err: any) {
+      res.status(500).json({
+        success: false,
+        message: err.message || "something went wrong",
+        error: err,
+      });
+    };
 };
 
 export const userController = {
@@ -70,4 +101,5 @@ export const userController = {
   getallUser,
   getUser,
   deleteUser,
+  updateUser,
 };
