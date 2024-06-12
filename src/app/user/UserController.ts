@@ -49,10 +49,25 @@ const getUser = async (req: Request, res: Response) => {
     }catch(err: any){
         console.log(err)
     }
-}
+};
+
+const deleteUser = async (req: Request, res: Response) => {
+    try{
+        const {studentId} = req.params;
+        const result = await userServices.deleteUserFromDB(studentId);
+        res.status(200).json({
+            success: true,
+            message: 'Product deleted successfully!',
+            data: result
+        })
+    }catch(err: any){
+        console.log(err)
+    }
+};
 
 export const userController = {
   createUser,
   getallUser,
-  getUser
+  getUser,
+  deleteUser,
 };
