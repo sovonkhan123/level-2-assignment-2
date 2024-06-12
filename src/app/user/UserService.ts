@@ -29,10 +29,16 @@ const updateUserFromDB = async (id: String, updateData: any) => {
   return result;
 };
 
+const searchUserByTermFromDB = async (searchTerm: string) => {
+  const result = await userModel.find({ name: new RegExp(searchTerm, 'i') });
+  return result;
+};
+
 export const userServices = {
   createUserIntoDB,
   getAllUserFromDB,
   getUserFromDB,
   deleteUserFromDB,
   updateUserFromDB,
+  searchUserByTermFromDB,
 };

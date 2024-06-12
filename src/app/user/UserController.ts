@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { userServices } from "./UserService";
 import UserValidationSchema from "./UserValidation";
 
+// for create a product
 const createUser = async (req: Request, res: Response) => {
   try {
     const user = req.body;
@@ -22,7 +23,9 @@ const createUser = async (req: Request, res: Response) => {
     });
   };
 };
+// end here
 
+// for get all product from database
 const getallUser = async (req: Request, res: Response) => {
   try {
     const result = await userServices.getAllUserFromDB();
@@ -40,7 +43,9 @@ const getallUser = async (req: Request, res: Response) => {
     });
   };
 };
+// end here
 
+// for get a product
 const getUser = async (req: Request, res: Response) => {
     try{
         const {studentId} = req.params;
@@ -58,7 +63,9 @@ const getUser = async (req: Request, res: Response) => {
       });
     };
 };
+// end here
 
+// for deleting a product
 const deleteUser = async (req: Request, res: Response) => {
     try{
         const {studentId} = req.params;
@@ -76,7 +83,9 @@ const deleteUser = async (req: Request, res: Response) => {
       });
     };
 };
+// end here
 
+// for updating a product
 const updateUser = async (req: Request, res: Response) => {
     try{
         const {studentId} = req.params;
@@ -95,6 +104,35 @@ const updateUser = async (req: Request, res: Response) => {
       });
     };
 };
+// end here
+
+// for searching product
+const searchUserByTerm = async (req: Request, res: Response) => {
+  try {
+    const { searchTerm } = req.query;
+    console.log(searchTerm);
+    if (!searchTerm) {
+      return res.status(400).json({
+        success: false,
+        message: "searchTerm query parameter is required",
+      });
+    }
+    const result = await userServices.searchUserByTermFromDB(searchTerm as string);
+    console.log(result);
+    res.status(200).json({
+      success: true,
+      message: `Products matching search term ${searchTerm} fetched successfully!`,
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: err.message || "something went wrong",
+      error: err,
+    });
+  }
+};
+// end here
 
 export const userController = {
   createUser,
@@ -102,4 +140,5 @@ export const userController = {
   getUser,
   deleteUser,
   updateUser,
+  searchUserByTerm
 };
