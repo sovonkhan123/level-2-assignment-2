@@ -21,7 +21,7 @@ const createUser = async (req: Request, res: Response) => {
       message: err.message || "something went wrong",
       error: err,
     });
-  };
+  }
 };
 // end here
 
@@ -41,7 +41,7 @@ const getallUser = async (req: Request, res: Response) => {
       message: err.message || "something went wrong",
       error: err,
     });
-  };
+  }
 };
 // end here
 
@@ -61,7 +61,7 @@ const getUser = async (req: Request, res: Response) => {
         message: err.message || "something went wrong",
         error: err,
       });
-    };
+    }
 };
 // end here
 
@@ -81,7 +81,7 @@ const deleteUser = async (req: Request, res: Response) => {
         message: err.message || "something went wrong",
         error: err,
       });
-    };
+    }
 };
 // end here
 
@@ -102,7 +102,7 @@ const updateUser = async (req: Request, res: Response) => {
         message: err.message || "something went wrong",
         error: err,
       });
-    };
+    }
 };
 // end here
 

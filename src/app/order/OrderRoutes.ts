@@ -11,6 +11,5 @@ orderRouter.get('/api/orders',(req, res) => {
       return orderCollection.getAllOrder(req, res);
     }
   });
-// orderRouter.get('/api/orders?email', orderCollection.searchOrder)
 
 export const ordersRouter = orderRouter; 
