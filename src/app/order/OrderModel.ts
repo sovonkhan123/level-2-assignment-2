@@ -2,10 +2,10 @@ import { Schema, model } from "mongoose";
 import { order } from "./OrderInterface";
 
 const orderSchema = new Schema<order>({
-  email: { type: String },
-  productId: { type: String },
-  price: String,
-  quantity: String,
+  email: { type: String, required: true },
+  productId: { type: String, required: true },
+  price: {type:Number, required: true},
+  quantity: {type: Number, required: true} ,
 });
 
 export const orderModel = model<order>('order', orderSchema);
