@@ -17,11 +17,11 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Hello War!!!!!!!!!!!!!')
 })
 
-// app.post('/', (req: Request, res: Response) => {
-//     console.log(req.body);
-//     res.json({
-//         message: "successfully re"
-//     })
-// })
+app.all('*', (req: Request, res: Response)=> {
+  res.status(400).json({
+    success: false,
+    message: 'route not found'
+  });
+});
 
 export default app;

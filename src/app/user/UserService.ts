@@ -14,17 +14,17 @@ const getAllUserFromDB = async () => {
   return result;
 };
 
-const getUserFromDB = async (id: String) => {
+const getUserFromDB = async (id: string) => {
   const result = await userModel.findOne({ id });
   return result;
 };
 
-const deleteUserFromDB = async (id: String) => {
+const deleteUserFromDB = async (id: string) => {
   const result = await userModel.deleteOne({ id });
   return result;
 };
 
-const updateUserFromDB = async (id: String, updateData: any) => {
+const updateUserFromDB = async (id: string, updateData: any) => {
   const result = await userModel.updateOne({ _id: id }, { $set: updateData }, { new: true });
   return result;
 };

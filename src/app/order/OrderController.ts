@@ -1,4 +1,4 @@
-import { order } from './OrderInterface';
+
 import { Request, Response } from "express";
 import { orderServices } from "./OrderService";
 import orderValidationSchema from './OrderValidation';

@@ -8,6 +8,8 @@
     "build:watching": "tsc -w",
     "start:production": "node ./dist/app/server.js",
     "start:development": "nodemon ./dist/app/server.js",
+    "lint": "npx eslint src --ignore-pattern .ts",
+    "lint:fix": "npx eslint src --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -30,7 +32,8 @@
     "@types/node": "^20.14.2",
     "@types/validator": "^13.11.10",
     "eslint": "^9.4.0",
-    "globals": "^15.3.0",
-    "typescript": "^5.4.5"
+    "globals": "^15.4.0",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.13.0"
   }
 }

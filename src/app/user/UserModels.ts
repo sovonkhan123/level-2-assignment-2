@@ -1,7 +1,7 @@
 
 
 import { Schema, model } from "mongoose";
-import { UsModel, User, UserInventory, UserVariant } from "./UserInterface";
+import { UsModel, User, UserInventory } from "./UserInterface";
 
 const UserVariantSchema = new Schema(
   {
