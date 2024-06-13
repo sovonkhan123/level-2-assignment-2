@@ -27,10 +27,31 @@ This project is an Express application written in TypeScript, integrating MongoD
 - Zod for validation
 - ESLint
 
+## API for product management
+
+  - /user/api/products
+  - /user/api/products
+  - /user/api/products/:productId
+  - /user/api/products/:productId
+  - /user/api/products/:productId
+  - /user/api/products?searchTerm=iphone
+
+## API for order mamagement
+
+  - /order/api/orders
+  - /order/api/orders
+  - /order/api/orders?email=level2@programming-hero.com
+
+
+### Prerequisites
+
+- Node.js and npm installed
+- MongoDB installed and running
+
 ### Installation
 
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/your-repo-url.git
+   git clone https://github.com/sovonkhan123/level-2-assignment-2.git
    cd your-repo-url
