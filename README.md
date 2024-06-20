@@ -29,18 +29,18 @@ This project is an Express application written in TypeScript, integrating MongoD
 
 ## API for product management
 
-  - /user/api/products
-  - /user/api/products
-  - /user/api/products/:productId
-  - /user/api/products/:productId
-  - /user/api/products/:productId
-  - /user/api/products?searchTerm=iphone
+  - /api/products
+  - /api/products
+  - /api/products/:productId
+  - /api/products/:productId
+  - /api/products/:productId
+  - /api/products?searchTerm=iphone
 
 ## API for order mamagement
 
-  - /order/api/orders
-  - /order/api/orders
-  - /order/api/orders?email=level2@programming-hero.com
+  - /api/orders
+  - /api/orders
+  - /api/orders?email=level2@programming-hero.com
 
 
 ### Prerequisites
